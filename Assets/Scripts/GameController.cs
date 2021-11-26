@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityMovementAI;
 
-public class GameManager : MonoBehaviour
+
+public class GameController : MonoBehaviour
 {
     public TMP_Text main_text;
     public TMP_Text health_text;
@@ -17,21 +18,23 @@ public class GameManager : MonoBehaviour
     public Spawner spawnerTwo;
 
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
         StartCoroutine("Countdown");
     }
 
     private void Update ()
     {
-        if (health <= 0) {
+        if (health <= 0)
+        {
             //Quit
         }
     }
 
 
 
-    IEnumerator Countdown () {
+    IEnumerator Countdown ()
+    {
         yield return new WaitForSeconds(1);
         main_text.text = "3";
         main_text.color = Color.red;
@@ -50,10 +53,11 @@ public class GameManager : MonoBehaviour
 
         spawnerOne.enabled = true;
         spawnerTwo.enabled = true;
-        
+
     }
 
-    public void UpdatePlayerInfo (int _health, bool _addPoints) {
+    public void UpdatePlayerInfo (int _health, bool _addPoints)
+    {
         if (_addPoints)
         {
             spawnerTwo.SpawnNewTarget();
@@ -62,12 +66,11 @@ public class GameManager : MonoBehaviour
             main_text.text = "Score: " + score;
             health_text.text = "Health: " + _health;
         }
-        else {
+        else
+        {
             spawnerOne.SpawnNewTarget();
             health = _health;
             health_text.text = "Health: " + _health;
         }
     }
-
-
 }

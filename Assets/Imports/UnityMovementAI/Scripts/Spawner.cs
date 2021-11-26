@@ -131,5 +131,16 @@ namespace UnityMovementAI
 
             return true;
         }
+
+        public void SpawnNewTarget () {
+            /* Try to place the objects multiple times before giving up */
+            for (int j = 0; j < 10; j++)
+            {
+                if (TryToCreateObject())
+                {
+                    break;
+                }
+            }
+        }
     }
 }
